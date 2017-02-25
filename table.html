@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Details</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script>
+  $(document).ready(function(){
+    $("#click").click(function(){
+      window.location.href="AddRecord.html";
+    });
+    $("#get").click(function(){
+      $.ajax({
+            type: "GET",
+            url : "getdata.php",
+            dataType:"json",
+            crossDomain: true,
+            cache: false,
+            success: function(result)
+            {
+                var trHTML='<tr><th>EID</th><th>Employee Name</th><th>Employee Designation</th><th>Employee Manager</th></tr>';
+                $.each(result, function(i)
+                {
+                  trHTML += '<tr><td>' + result[i].EID + '</td><td>' + result[i].EMP_Name + '</td><td>'+ result[i].EMP_Designation +'</td><td>'+ result[i].EMP_Reporting_Manager +'</td></tr>';
+                });
+                //alert(result[0].EMP_Name);
+                $('#location').append(trHTML);
+              },
+          });
+      });
+  });
+	</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Employee Details</a>
+    </div>
+    <ul class="nav navbar-nav">
+	<li><a href="home.html">Home</a></li>
+  <li class="active"><a href="table.html">Table</a></li>
+    </ul>
+  </div>
+  </nav>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+
+        </nav>
+        <h3 class="text-muted" style="color:black;"><dt>ALL EMPLOYEES</dt></h3>
+        <input type="submit" class="btn btn-primary" id="get" style="position: absolute; left: 500px; top: 90px; height : 40px; width : 200px;" value = "View Employees Details">
+        <input type="submit" class="btn btn-primary" id="click" style="position: absolute; left: 950px; top: 90px; height : 40px; width : 200px;" value = " + New Employee Details">
+      </div>
+	  </div>
+
+    <div class="table-responsive">
+    <table id="location" class="table" border='1'>
+    
+    </table>
+  </div>
+    </div> 
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous">
+	</script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

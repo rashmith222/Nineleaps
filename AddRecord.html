@@ -1,0 +1,98 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Details</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<!--<link href="css/style.css" rel="stylesheet">-->
+	<script src="js/jquery.min.js"></script>
+	<script>
+  $(document).ready(function(){
+    $("#myForm").submit(function(){
+    var res = $('#Employee_name').val();
+    var res1 =$('#Employee_designation').val();
+    var res3 =$('#Manager_select').val();
+    //var res2 = $('#Manager_select').val();
+    //var res3 = $('select[name = Manager_select]').val();
+    //var res3 = $('#Manager_select').find(":selected").text();
+    //alert(res3);
+    $.ajax({
+            type: 'POST',
+            url : "Connectphp.php",
+            data : {Employee_name : res,Employee_designation : res1,Manager_select : res3},
+            //dataType:"json",
+            success: function(result)
+            {
+                //alert(result);
+                window.location.href = 'table.html';
+            },
+    });
+  });
+  });
+	</script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Company Employee Details</a>
+    </div>
+    <ul class="nav navbar-nav">
+	<li><a href="home.html">Home</a></li>
+	<li><a href="table.html">Employees</a></li>
+      <li class="active"><a href="#">Add New</a></li>
+    </ul>
+  </div>
+</nav>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+
+        </nav>
+        <h3 class="text-muted">Employee Details</h3>
+      </div>
+      <div class="jumbotron">
+        <h2>Enter Employee Details</h2>
+        <form id = "myForm">
+		<div class="form-group">
+		<label>Employee Name</label>
+		<input type="text" class="form-control" id="Employee_name" placeholder="Full name" style="height : 40px; width : 780px" required>
+		</div>
+		<div class="form-group">
+		<label>Employee Designation</label>
+		<input type="text" class="form-control" id="Employee_designation" placeholder="Designation" style="height : 40px; width : 780px" required>
+		</div>
+		<div class="form-group">
+		<label for="Manager">Manager</label>
+    <input type="text" class="form-control" id="Manager_select" placeholder="Reporting Manager" style="height : 40px; width : 780px" required>
+		  <!--<select id="Manager_select"  class="form-control" style="height : 40px; width : 780px" required>
+            <option value=''>Select Reporting Manager</option>      
+            <option value=''></option>
+			      <option value='total'>Total Points</option>
+            <option value='created'>Created</option>
+            <option value='read'>Read</option>
+            <option value='replied'>Replied</option>            
+          </select>-->
+		  </div><br>
+	    <center><input type="submit" class="btn btn-primary" value="Submit"></center>
+		</form>
+      </div>
+	  </div>
+	  </div>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+         
+        </div>
+      </div>
+    </div> 
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous">
+	</script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
